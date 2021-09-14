@@ -15,7 +15,7 @@ const ImageCard = () => {
             </div>
             
            <div className="imagecontent">
-               <img src={potato}></img>
+               <img src={potato} alt="potato"></img>
             </div>
             <p>this is a potato, blah blah blah blah blah</p>
             <input type="text" placeholder="type a comment here..." className="comment"/>
