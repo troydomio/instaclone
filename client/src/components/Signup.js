@@ -2,14 +2,14 @@ import '../App.css'
 import { useState } from "react";
 
 
-const Signup= () => {
+const Signup= ({onLogin}) => {
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  // const [errors, setErrors] = useState([]);
-
+  const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [errors, setErrors] = useState([]);
+  
   const handleSubmit= (e) => {
-    e.preventDefault();
     e.preventDefault();
     fetch("http://localhost:3000/signup", {
     method: "POST",
@@ -18,27 +18,55 @@ const Signup= () => {
     },
     body: JSON.stringify({
         username: username,
-       password: password
+       password: password,
+       password_confirmation: passwordConfirmation
     }),
     })
-    .then((r) => r.json())
-    .then((newsignup) => console.log(newsignup));
-    // axios.post("http://localhost:3000/signup",{
-    //   username, 
-    //   password
-    // }, {withCredentials: true}
-    // ).then(r => console.log('registration res', r)).catch(error => {console.log("registration error", error)})
+    .then((r) => {
+      if (r.ok) {
+        r.json().then((user) => onLogin(user));
+      } else {
+        r.json().then((err) => setErrors(err.errors));
+      }
+    });
   }
 
     return (
         
            <div className="login">
-             signup
+            
           <form onSubmit={handleSubmit}>
-            <input className="login" type="text" placeholder="username" onChange={(e) => setUsername(e.target.value)}/>
-            <input className="login" type="password" placeholder="password" onChange={(e) => setPassword(e.target.value)}/> 
-            {/* <input className="login" type="submit" value="Login"/> */}
-            <input className="login" type="submit" value="Sign Up"/>
+
+            <input 
+            className="login" 
+            type="text" 
+            placeholder="username" 
+            value={username}  
+            onChange={(e) => setUsername(e.target.value)}
+            />
+
+            <input 
+            className="login" 
+            type="password" 
+            placeholder="password" 
+            value={password}   
+            onChange={(e) => setPassword(e.target.value)}
+            /> 
+
+<input 
+            className="login" 
+            type="password" 
+            placeholder="password confirmation" 
+            value={passwordConfirmation}   
+            onChange={(e) => setPasswordConfirmation(e.target.value)}
+            /> 
+           
+            <input 
+            className="login" 
+            type="submit" 
+            value="Sign Up"
+            />
+
           </form>
       
         </div>

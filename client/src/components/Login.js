@@ -7,12 +7,10 @@ const Login = ({onLogin}) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit= (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    setIsLoading(true);
-    fetch("http://localhost:3000/login", {
+    fetch("/login", {
     method: "POST",
     headers: {
         "Content-Type": "application/json",
@@ -21,9 +19,7 @@ const Login = ({onLogin}) => {
         username: username,
        password: password
     }),
-    })
-    .then((r) => {
-      setIsLoading(false);
+    }).then((r) => {
       if (r.ok) {
         r.json().then((user) => onLogin(user));
       } else {
@@ -31,12 +27,14 @@ const Login = ({onLogin}) => {
       }
     });
   }
+  
 
     return (
         
            <div className="login">
-             login
+             
           <form onSubmit={handleSubmit}>
+
             <input 
             className="login"
              type="text" 
@@ -44,6 +42,7 @@ const Login = ({onLogin}) => {
              value={username}
              onChange={(e) => setUsername(e.target.value)}
              />
+
             <input 
             className="login" 
             type="password" 
@@ -51,15 +50,16 @@ const Login = ({onLogin}) => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             /> 
+
             <input 
             className="login" 
             type="submit" 
             value="Log In"
             />
+
           </form>
       
         </div>
-       
     )
 }
 

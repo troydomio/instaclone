@@ -3,7 +3,7 @@ import ImageCard from "./ImageCard"
 const Main = () => {
     return (
         <div className="imagecontainer">
-             <ImageCard/>
+             {/* <ImageCard/>
              <ImageCard/>
              <ImageCard/>
             <ImageCard/>
@@ -11,7 +11,7 @@ const Main = () => {
              <ImageCard/>
              <ImageCard/>
              <ImageCard/>
-             <ImageCard/> 
+             <ImageCard/>  */}
         </div>
     )
 }

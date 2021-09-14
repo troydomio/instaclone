@@ -15,11 +15,11 @@ import { useState, useEffect } from "react";
 
 function App() {
 
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(false);
 
   useEffect(() => {
     // auto-login
-    fetch("http://localhost:3000/me").then((r) => {
+    fetch("/me").then((r) => {
       if (r.ok) {
         r.json().then((user) => setUser(user));
       }
@@ -30,17 +30,11 @@ function App() {
 
   return (
     <div className="App">
-      <NavBar/>
+      <NavBar user={user} setUser={setUser}/>
          <Router>
             <Switch>
-              {/* <Route path="/signup">
-              <Signup/>
-              </Route> */}
               <Route path="/">
               <Main/>
-              </Route>
-              <Route path="/dashboard">
-                 {/* <Main/> */}
               </Route>
             </Switch>
          </Router>
