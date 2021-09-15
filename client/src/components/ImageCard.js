@@ -3,17 +3,20 @@ import {BsTrash, BsPencil} from "react-icons/bs";
 
 
 
-const ImageCard = ({image}) => {
+const ImageCard = ({image, deleteItem}) => {
 
     const deleteImage = () => {
-        
+        fetch(`images/${image.id}`, {
+      method: "DELETE",
+    });
+    deleteItem(image.id);
     }
 
     return (
         <div className="imagecard">
             <div className="user">
             
-            <p>{image.user_id}</p>
+            <p>user id: {image.user_id}</p>
             <p className="edit"><BsPencil/></p>
             
             <p className="delete"><BsTrash onClick={deleteImage}/></p>

@@ -4,20 +4,23 @@ import { useState,useEffect } from "react"
 const Main = () => {
 
     const[images, setImages] = useState([])
-
-
     useEffect(() => {
         fetch("/images")
           .then((r) => r.json())
           .then(setImages);
       }, []);
+
+      function deleteItem(id) {
+        const deleteItem = images.filter(image => image.id !== id)
+        setImages(deleteItem)
+    }
       
 
     return (
         <>
     {images.map((image)=> (
         // console.log(image.image_url)
-       <ImageCard image={image}/>
+       <ImageCard image={image} deleteItem={deleteItem}/>
     ))}
        
         
