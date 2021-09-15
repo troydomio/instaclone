@@ -1,19 +1,37 @@
 import ImageCard from "./ImageCard"
+import { useState,useEffect } from "react"
 
 const Main = () => {
+
+    const[images, setImages] = useState([])
+
+
+    useEffect(() => {
+        fetch("/images")
+          .then((r) => r.json())
+          .then(setImages);
+      }, []);
+      
+
     return (
-        <div className="imagecontainer">
-             {/* <ImageCard/>
-             <ImageCard/>
-             <ImageCard/>
-            <ImageCard/>
-             <ImageCard/>
-             <ImageCard/>
-             <ImageCard/>
-             <ImageCard/>
-             <ImageCard/>  */}
-        </div>
-    )
-}
+        <>
+    {images.map((image)=> (
+        // console.log(image.image_url)
+       <ImageCard image={image}/>
+    ))}
+       
+        
+       </>
+       
+       
+       
+       )}
+        
+   
+            
+       
+        
+    
+
 
 export default Main

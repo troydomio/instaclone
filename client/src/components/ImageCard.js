@@ -3,22 +3,27 @@ import {BsTrash, BsPencil} from "react-icons/bs";
 
 
 
-const ImageCard = () => {
+const ImageCard = ({image}) => {
+
+    const deleteImage = () => {
+        
+    }
+
     return (
         <div className="imagecard">
             <div className="user">
             
-            <p >username1</p>
+            <p>{image.user_id}</p>
             <p className="edit"><BsPencil/></p>
             
-            <p className="delete"><BsTrash/></p>
+            <p className="delete"><BsTrash onClick={deleteImage}/></p>
             </div>
             
            <div className="imagecontent">
-               <img src={potato} alt="potato"></img>
+               <img src={image.image_url} alt="potato"></img>
             </div>
-            <p>this is a potato, blah blah blah blah blah</p>
-            <input type="text" placeholder="type a comment here..." className="comment"/>
+            <p>{image.description}</p>
+            {/* <input type="text" placeholder="type a comment here..." className="comment"/> */}
         </div>
     )
 }
