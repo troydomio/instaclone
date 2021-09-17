@@ -1,10 +1,12 @@
 class ImagesController < ApplicationController
     def index
-        render json: Image.all
+        images = @current_user.images.all
+        render json: images, include:[:user]
     end
 
     def show 
-        render json: Image.find(params[:id])
+        images= @current_user.Image.find(params[:id])
+        render json: images
     end
     
     def create

@@ -34,7 +34,7 @@ function App() {
          <Router>
             <Switch>
               <Route path="/">
-              <Main/>
+              <Main user={user}/>
               </Route>
             </Switch>
          </Router>

@@ -17,7 +17,6 @@ const LandingPage = ({ onLogin }) => {
 
     return (
     <div  className="landingcontainer">
-    {/* <div className="images"><img src="https://s3images.coroflot.com/user_files/individual_files/large_1007330_7s9uwmkiksuyhozltqgrnuy4l.png"></img></div> */}
       <div className="logincontainer">
         <div className="login">
           <div className="logintextlogo"><p>Potatogram</p></div>
